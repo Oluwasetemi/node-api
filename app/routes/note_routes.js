@@ -7,9 +7,9 @@ module.exports = function(app, client) {
         const details = {'_id': new ObjectID(id)}
         db.collection('notes').findOne(details, (err, items) => {
             if(err) {
-                res.send({ 'error': 'An error has occurred'})
+                res.json({ 'error': 'An error has occurred'})
             } else {
-                res.send(items)
+                res.json(items)
             }
         })
     })
@@ -48,5 +48,10 @@ module.exports = function(app, client) {
                 res.send(results.ops[0])
             }
         })
+    })
+
+    app.post('/api', (req, res) => {
+        const obj = {name: req.body.name, age: req.body.age}
+        res.json(obj)
     })
 }
