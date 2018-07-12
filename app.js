@@ -1,5 +1,5 @@
 require('dotenv').config({
-    path: 'variables.env'
+    path: 'variable.env'
 })
 const express = require('express')
 // const MongoClient =  require('mongodb').MongoClient
