@@ -10,6 +10,7 @@ const ObjectID = mongoose.Types.ObjectId
 mongoose.Promise = global.Promise // Tell Mongoose to use ES6 promises
 
 mongoose.connect(process.env.DATABASE)
+
 mongoose.connection.on('error', (err) => {
     console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`)
 })
@@ -75,7 +76,9 @@ app.put('/notes/:id', (req, res) => {
     const details = {
         '_id': new ObjectID(id)
     }
-    Note.findOneAndUpdate(details, req.body, { new: true }, (err, items) => {
+    Note.findOneAndUpdate(details, req.body, {
+        new: true
+    }, (err, items) => {
         if (err) {
             res.send({
                 'error': 'An error has occurred'
@@ -104,7 +107,7 @@ app.post('/api', (req, res) => {
 })
 
 app.get('/api', (req, res) => {
-  res.send('get Route to /api is working');
+    res.send('get Route to /api is working');
 })
 
 app.listen(7777, () => {
